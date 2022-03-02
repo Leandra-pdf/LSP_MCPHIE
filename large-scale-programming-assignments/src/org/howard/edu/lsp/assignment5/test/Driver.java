@@ -1,5 +1,7 @@
-package org.howard.edu.lsp.assignment5;  
+package org.howard.edu.lsp.assignment5.test;
 
+import org.howard.edu.lsp.assignment5.implementation.IntegerSet;
+import org.howard.edu.lsp.assignment5.implementation.IntegerSetException;
 /**
  * 
  * @author Leandra McPhie
