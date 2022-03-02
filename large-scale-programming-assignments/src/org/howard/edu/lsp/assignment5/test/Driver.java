@@ -43,10 +43,10 @@ public class Driver {
 		System.out.println("Set 3 contains the number 11: " + set1.contains(11));
 		
 		// test remove, empty, and toString function
-		System.out.println("\nSet 1: " + set1);
-		System.out.println("Set 2: " + set2);
-		System.out.println("Set 3: " + set3);
-		System.out.println("Set 4: " + set4);
+		System.out.println("\nSet 1 numbers: " + set1);
+		System.out.println("Set 2 numbers: " + set2);
+		System.out.println("Set 3 numbers: " + set3);
+		System.out.println("Set 4 numbers: " + set4);
 		set1.add(11);
 		set3.add(16);
 		System.out.println("\nSet 1 with an addition of 11: " + set1);
