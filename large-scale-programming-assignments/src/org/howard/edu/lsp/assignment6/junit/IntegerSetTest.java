@@ -271,6 +271,7 @@ public class IntegerSetTest {
 		set2.add(6);
 		
 		set1.intersect(set2);
+		assertEquals(set1.toString(), "2 3 4 ");
 		assertEquals(set2.contains(2), set1.contains(2));
 		assertEquals(set2.contains(3), set1.contains(3));
 		assertEquals(set2.contains(4), set1.contains(4));
@@ -298,8 +299,9 @@ public class IntegerSetTest {
 		set2.add(6);
 		
 		set1.diff(set2);
+		assertEquals(set1.toString(), "0 1 ");
 		assertNotEquals(set2, set1);
-		assertTrue(set2.contains(0) == False);
+		assertFalse(set2.contains(0));
 		assertTrue(set1.contains(0));
 		assertTrue(set1.contains(1) != set2.contains(1));
 		assertTrue(set1.contains(5) != set2.contains(5));
