@@ -139,12 +139,12 @@ public class IntegerSetTest {
 	public void testLargest_throwsException(){
 		//JUnit test cases for the largest method
 		IntegerSet set1 = new IntegerSet();
-		Exception exception1 = assertThrows(IntegerSetException.class, () -> {
+		Exception exception = assertThrows(IntegerSetException.class, () -> {
 			set1.largest(); 
 		});
 		
 		String expectedMessage = "Exception from largest because set is empty.";
-		String actualMessage = exception1.getMessage();
+		String actualMessage = exception.getMessage();
 		assertTrue(actualMessage.contains(expectedMessage) == True);
 	}
 	
@@ -171,18 +171,18 @@ public class IntegerSetTest {
 	public void testSmallest_throwsException(){
 		//JUnit test cases for the largest method
 		IntegerSet set1 = new IntegerSet();
-		Exception exception1 = assertThrows(IntegerSetException.class, () -> {
+		Exception exception = assertThrows(IntegerSetException.class, () -> {
 			set1.largest(); 
 		});
 		
 		String expectedMessage = "Exception from largest because set is empty.";
-		String actualMessage = exception1.getMessage();
+		String actualMessage = exception.getMessage();
 		assertTrue(actualMessage.contains(expectedMessage) == True);
 	}
 	
 	
 	@Test
-	@DisplayName("IntegerSet.add() test cases")
+	@DisplayName("Test case for add method")
 	public void testAdd() {
 		//JUnit test cases for the add method
 		IntegerSet set1 = new IntegerSet();
@@ -196,4 +196,149 @@ public class IntegerSetTest {
 	}
 	
 	
+	@Test
+	@DisplayName("Test case for remove method")
+	public void testRemove() throws Exception {
+		//JUnit test cases for the remove method
+		IntegerSet set1 = new IntegerSet();
+		
+		set1.add(10);
+		set1.add(20);
+		set1.remove(10);
+		assertTrue(set1.toString().equals("20 "));
+		
+		set1.remove(20);
+		assertNotEquals(set1.toString(), "20 ");
+		assertTrue(set1.toString() == "");
+	}
+	
+	
+	@Test
+	@DisplayName("Test case for remove method, throws exception")
+	public void testRemove_throwsException(){
+		//JUnit test cases for the remove method
+		IntegerSet set1 = new IntegerSet();
+		Exception exception = assertThrows(IntegerSetException.class, () -> {
+			set1.remove(10); 
+		});
+		
+		assertEquals(exception.getMessage(), "Exception thrown by remove because set is empty.");
+	}
+	
+	
+	@Test
+	@DisplayName("Test case for union method")
+	public void testUnion() {
+		//JUnit test cases for the union  method
+		IntegerSet set1 = new IntegerSet();
+		IntegerSet set2 = new IntegerSet();
+		IntegerSet set3 = new IntegerSet();
+		
+		set1.add(1);
+		set1.add(2);
+		set2.add(3);
+		set3.add(1);
+		set3.add(2);
+		set3.add(3);
+		set1.union(set2);
+		assertTrue(set1.equals(set3));
+		assertNotEquals(set2, set3);
+		
+		set2.add(4);
+		set2.add(5);
+		set3.union(set2);
+		assertEquals(set3.toString(), "1 2 3 4 5 ");
+	}
+	
+	
+	@Test
+	@DisplayName("Test case for intersect method")
+	public void testIntersect() {
+		//JUnit test cases for the union  method
+		IntegerSet set1 = new IntegerSet();
+		IntegerSet set2 = new IntegerSet();
+		
+		set1.add(0);
+		set1.add(1);
+		set1.add(2);
+		set1.add(3);
+		set1.add(4);
+		
+		set2.add(2);
+		set2.add(3);
+		set2.add(4);
+		set2.add(5);
+		set2.add(6);
+		
+		set1.intersect(set2);
+		assertEquals(set2.contains(2), set1.contains(2));
+		assertEquals(set2.contains(3), set1.contains(3));
+		assertEquals(set2.contains(4), set1.contains(4));
+		assertNotEquals(set2, set1);
+	}
+	
+	
+	@Test
+	@DisplayName("Test case for difference method")
+	public void testDifference() {
+		//JUnit test cases for the union  method
+		IntegerSet set1 = new IntegerSet();
+		IntegerSet set2 = new IntegerSet();
+		
+		set1.add(0);
+		set1.add(1);
+		set1.add(2);
+		set1.add(3);
+		set1.add(4);
+		
+		set2.add(2);
+		set2.add(3);
+		set2.add(4);
+		set2.add(5);
+		set2.add(6);
+		
+		set1.diff(set2);
+		assertNotEquals(set2, set1);
+		assertTrue(set2.contains(0) == False);
+		assertTrue(set1.contains(0));
+		assertTrue(set1.contains(1) != set2.contains(1));
+		assertTrue(set1.contains(5) != set2.contains(5));
+	}
+	
+	
+	@Test
+	@DisplayName("Test cases for isEmpty method")
+	public void testIsEmpty() {
+		//JUnit test cases for the empty method
+		IntegerSet set1 = new IntegerSet();
+		assertTrue(set1.isEmpty());
+		
+		set1.add(0);
+		assertFalse(set1.isEmpty());
+		
+		set1.clear();
+		set1.add(1);
+		assertFalse(set1.isEmpty());
+		assertNotEquals(set1, "");
+		
+		set1.clear();
+		assertTrue(set1.isEmpty());
+	}
+	
+	
+	@Test
+	@DisplayName("Test cases for toString method")
+	public void testTo_String() {
+		//JUnit test cases for toString method
+		IntegerSet set1 = new IntegerSet();
+		assertTrue(set1.toString() == "");
+		assertEquals(set1.toString(), "");
+		
+		set1.add(10);
+		set1.add(20);
+		set1.add(30);
+		assertFalse(set1.toString() == "");
+		assertNotEquals(set1.toString(), "");
+		assertEquals(set1.toString(), "10 20 30 ");
+	}
 }
